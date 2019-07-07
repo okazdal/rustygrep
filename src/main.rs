@@ -3,16 +3,22 @@ use std::process;
 use rustygrep::Config;
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
+//    let args: Vec<String> = env::args().collect();
 //    println!("{:?}", args);
 
 //    let query = &args[1];
 //    let filename = &args[2];
 
 //    let config = parse_config(&args);
-    let config = Config::new(&args).unwrap_or_else(|err| {
-        println!("Problem parsing arguments: {}", err);
-        process::exit(1);
+//    let config = Config::new(&args).unwrap_or_else(|err| {
+//        eprintln!("Problem parsing arguments: {}", err);
+//        process::exit(1);
+//    });
+
+    let config= Config::new(env::args()).unwrap_or_else(|err| {
+        eprintln!("Problem parsing argumantes: {}", err);
+        process.exit(1);
+
     });
 
 //    println!("Searching for {}", query);
@@ -26,7 +32,7 @@ fn main() {
 //    run(config);
 
     if let Err(e) = rustygrep::run(config) {
-        println!("App error: {}", e);
+        eprintln!("App error: {}", e);
 
         process::exit(1);
 
